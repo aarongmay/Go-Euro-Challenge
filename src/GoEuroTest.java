@@ -36,10 +36,10 @@ public class GoEuroTest {
 			}
 			else { //JSON data successfully returned
 				System.out.println("JSON data successfully captured using the input: " + args[0]); //output success message with reiterating user input
-				int fileWriteResult = writeJSONToFile(json); //write JSON data to file and store outcome result
+				int fileWriteResult = writeJSONToFile(json, args[0]); //write JSON data to file and store outcome result
 				if (fileWriteResult == 0) { //test if write successful
 					System.out.println("CSV file succesfully written to."); //output success message to user
-					System.out.println("CSV generated at location: " + System.getProperty("user.dir") + "/JSON.csv"); //output location of CSV file and name
+					System.out.println("CSV generated at location: " + System.getProperty("user.dir") + "/" + args[0] + ".csv"); //output location of CSV file and name
 				}
 				else {
 					System.out.println("Error occured writing to file");
@@ -88,11 +88,11 @@ public class GoEuroTest {
 	 * @param jsonArray an array of JSON data which will be attempted to be written to a CSV file 
 	 * @return 0 if the write to file was successful, 1 if the write was unsuccessful
 	 */
-	private static int writeJSONToFile(JSONArray jsonArray) {
+	private static int writeJSONToFile(JSONArray jsonArray, String filename) {
 
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter(System.getProperty("user.dir") + "/JSON.csv", "Windows-1252"); //create JSON.csv file at users current location 
+			writer = new PrintWriter(System.getProperty("user.dir") + "/" + filename + ".csv", "Windows-1252"); //create JSON.csv file at users current location 
 			writer.println("_id,name,type,latitude,longitude"); //store the headings for the CSV
 			for (int i = 0; i < jsonArray.length(); i++) { //use all data from entire JSONArray
 				writer.println(jsonArray.getJSONObject(i).get("_id") + "," + //write specific data to file, using comma delimiters 
