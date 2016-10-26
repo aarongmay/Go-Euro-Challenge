@@ -117,7 +117,7 @@ public class GoEuroTest {
 	 * @return 0 if the arg is validated successful, 1 if the arg is unsuccessful at being validated
 	 */
 	private static int validateInput(String[] args) {
-		if (args.length == 1) {//check that only one arg has been entered		
+		if (args.length == 1 && !args[0].isEmpty()) {//check that only one arg has been entered and the arg is not empty	
 			return 0;//input was validated successfully
 		}
 		else {//output instructions to ensure command line argument is in the correct format
